@@ -1,11 +1,15 @@
 interface T3Model{
     public enum Player {X, O, __}
     Player getPlayer(int i,int j);
+    Player  currentPlayer();
+    void makeMove(int rol, int col);
+    Player getWinner();
 }
 
 public class TicTacToeConsoleApp {
     public static void main(String[] args) {
         T3Model model = null;
+        T3Model.Player winner = null;
 do{
         // Display board
       /*
@@ -28,7 +32,7 @@ do{
         int row = 1, col = 1;
         model.makeMove(row, col);
         // ck if winner
-        Player winner = model.getWinner();
+        winner = model.getWinner();
         if (winner != T3Model.Player.__) {
             System.out.printf("Player %s won the game!", winner);
         }
