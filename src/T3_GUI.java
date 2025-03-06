@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.PublicKey;
 
 public class T3_GUI extends JFrame {
     private T3_Model model = new T3_Model();
@@ -19,12 +20,24 @@ public class T3_GUI extends JFrame {
         add(new JLabel("Welcome to Tic Tac Toe"), BorderLayout.SOUTH);
 
         t3Panel.setLayout(new GridLayout(3,3,5,5));
-        ControllerEventHandler ceh = new ControllerEventHandler();
+        //ControllerEventHandler ceh = new ControllerEventHandler();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 T3_JButton b = new T3_JButton(i,j);
                 t3Panel.add(b);
-                b.addActionListener(ceh);
+               // int row = i;
+               // int col = j;
+                int finalI = i;
+                int finalJ = j;
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        b.setText("X");
+                        model.makeMove(finalI, finalJ);
+
+                    }
+
+                });
             }
         }
         setVisible(true);
